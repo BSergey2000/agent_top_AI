@@ -1,3 +1,7 @@
+# Установка зависимостей 
+setup:
+	uv sync
+
 # Запуск MCP сервера STDIO
 mcp_stdio:
 	npx @modelcontextprotocol/inspector uv run --with fastmcp mcp-server.py
@@ -9,7 +13,3 @@ mcp:
 # Запуск MCP Inspector
 inspector:
 	npx @modelcontextprotocol/inspector
-
-# Запустить всё (в двух терминалах лучше)
-run:
-	@echo "Run 'make mcp' in one terminal and 'make inspector' in another."
