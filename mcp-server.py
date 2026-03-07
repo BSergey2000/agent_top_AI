@@ -21,15 +21,15 @@ def write_3way_intro() -> str:
         return file.read()
     
 @server.resource("info-excursion://Paris-trips", mime_type="text/markdown")
-def write_3way_intro() -> str:
+def write_excursion_intro() -> str:
     """Информация по экскурсиям в Париже"""
     with open("src/data/paris_trips.md", "r", encoding="utf-8") as file:
         return file.read()
     
 @server.tool()
-async def add(a: int, b: int) -> int:
+async def add(a: int, b: int) -> str:
     """Сумма двух чисел"""
-    return a + b
+    return str(a + b)
 
 
 @server.tool()

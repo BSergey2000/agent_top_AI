@@ -13,3 +13,8 @@ mcp:
 # Запуск MCP Inspector
 inspector:
 	npx @modelcontextprotocol/inspector
+
+# Запуск агента, который будет взаимодействовать с MCP сервером
+agent:
+	python main.py
+	
