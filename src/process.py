@@ -3,7 +3,7 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_openai import ChatOpenAI
 from loguru import logger
 
-from utils.secrets import OPEN_AI_KEY
+from src.utils.secrets import OPENROUTER_API_KEY
 
 def get_tools_used(response):
     """
@@ -36,16 +36,26 @@ def client_setup():
                 "transport": "stdio", 
                 "command": "python",
                 "args": ["C:\\documents\\проект_УРФУ\\программа урфу\\agent_top_AI\\mcp-server.py"],
-            }
+                # агент общается с сервером через stdio, независимо от IS_STDIO в .env
+                "env": {"IS_STDIO": "True"},
+            },
+            # внешний MCP сервер поиска в интернете (DuckDuckGo, API-ключ не нужен)
+            # инструменты: search(query, max_results) и fetch_content(url)
+            "web_search": {
+                "transport": "stdio",
+                "command": "uvx",
+                "args": ["duckduckgo-mcp-server"],
+            },
         }
     )
     return client
 
 def model_setup():
     model = ChatOpenAI(
-        model="gpt-4o-mini",
+        model="nvidia/nemotron-3.5-super-vl:free",
+        base_url="https://openrouter.ai/api/v1",
         temperature=0.1,
-        api_key=OPEN_AI_KEY,
+        api_key=OPENROUTER_API_KEY,
         max_tokens=1000,
         timeout=30)
     return model
