@@ -1,0 +1,352 @@
+{
+  "inventory": {
+    "tools": [
+      {
+        "name": "add",
+        "description": "Сумма двух чисел"
+      },
+      {
+        "name": "get_weather",
+        "description": "Получает текущую погоду в городе."
+      },
+      {
+        "name": "convert_temperature",
+        "description": "Переводит температуру между шкалами Цельсия (C), Фаренгейта (F) и Кельвина (K).\nПример: value=100, from_unit=\"C\", to_unit=\"F\"."
+      }
+    ],
+    "prompts": [
+      "explain_topic"
+    ],
+    "resources": [
+      "entry-weather-example://weather-letter",
+      "info-excursion://Paris-trips",
+      "info-excursion://Yekaterinburg-trips"
+    ]
+  },
+  "prompts": [
+    {
+      "label": "простая тема",
+      "topic": "радуга",
+      "ok": true,
+      "text": "Объясни тему «радуга» простым языком для новичка, без технического жаргона.\nСтруктура ответа:\n1. Определение в одном предложении.\n2. Аналогия из повседневной жизни.\n3. Два коротких примера.\nОтвечай на русском языке, не более 150 слов.\nЕсли это бессмысленный набор символов, а не тема, — прямо скажи об этом и попроси уточнить, ничего не выдумывай."
+    },
+    {
+      "label": "сложная тема",
+      "topic": "квантовая запутанность",
+      "ok": true,
+      "text": "Объясни тему «квантовая запутанность» простым языком для новичка, без технического жаргона.\nСтруктура ответа:\n1. Определение в одном предложении.\n2. Аналогия из повседневной жизни.\n3. Два коротких примера.\nОтвечай на русском языке, не более 150 слов.\nЕсли это бессмысленный набор символов, а не тема, — прямо скажи об этом и попроси уточнить, ничего не выдумывай."
+    },
+    {
+      "label": "некорректные данные: набор символов",
+      "topic": "asdfgh 12345 ###",
+      "ok": true,
+      "text": "Объясни тему «asdfgh 12345 ###» простым языком для новичка, без технического жаргона.\nСтруктура ответа:\n1. Определение в одном предложении.\n2. Аналогия из повседневной жизни.\n3. Два коротких примера.\nОтвечай на русском языке, не более 150 слов.\nЕсли это бессмысленный набор символов, а не тема, — прямо скажи об этом и попроси уточнить, ничего не выдумывай."
+    },
+    {
+      "label": "некорректные данные: пустая строка",
+      "topic": "",
+      "ok": true,
+      "text": "Пользователь не указал тему для объяснения. Ничего не объясняй: вежливо попроси его назвать тему."
+    },
+    {
+      "label": "некорректные данные: 500 символов",
+      "topic": "аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа",
+      "ok": true,
+      "text": "Пользователь передал вместо темы текст длиной 500 символов (допускается не более 200). Ничего не объясняй: вежливо попроси сформулировать тему короче."
+    }
+  ],
+  "resources": {
+    "entry-weather-example://weather-letter": "Доброго дня! Метеостанция на связи: за вашим окном сейчас ...",
+    "info-excursion://Paris-trips": "# Экскурсии в Париже\n\n| № | Экскурсия | Длительность | Цена | Примечание |\n|---|-----------|--------------|------|------------|\n| 1 | Лувр | 3 часа | 45 € | Закрыт по вторникам, билет нужно бронировать заранее |\n| 2 | Эйфелева башня | 2 часа | 35 € | Подъём на вершину, лучшее время — на закате |\n| 3 | Монмартр и Сакре-Кёр | 2,5 часа | 25 € | Пешеходная, много лестниц |\n| 4 | Круиз по Сене | 1 час | 18 € | Отправление каждые 30 минут от моста Альма |\n| 5 | Версаль | 5 часов | 70 € | Выезд за город, закрыт по понедельникам |\n\nСовет: в дождливую погоду выбирайте Лувр, в ясную — Монмартр или круиз по Сене.\n",
+    "info-excursion://Yekaterinburg-trips": "# Экскурсии в Екатеринбурге\n\n| № | Экскурсия | Длительность | Цена | Примечание |\n|---|-----------|--------------|------|------------|\n| 1 | Плотинка и исторический центр | 2 часа | 800 ₽ | Пешеходная, начало у плотины на реке Исеть |\n| 2 | Смотровая площадка башни «Высоцкий» | 1 час | 500 ₽ | 52-й этаж, вид на весь город |\n| 3 | Храм-на-Крови | 1,5 часа | 600 ₽ | Музей и храм на месте дома Ипатьева |\n| 4 | Граница Европы и Азии | 3 часа | 1500 ₽ | Выезд за город, обелиск на Московском тракте |\n| 5 | Ельцин Центр | 2 часа | 400 ₽ | Музей современной истории, закрыт по понедельникам |\n\nСовет: зимой одевайтесь теплее — на смотровой площадке и на границе Европы и Азии сильный ветер.\n"
+  },
+  "resource_missing": "Resource not found: Unknown resource: 'info-excursion://Tokyo-trips'",
+  "tools": [
+    {
+      "tool": "add",
+      "args": {
+        "a": 2,
+        "b": 2
+      },
+      "ok": true,
+      "output": "4",
+      "ms": 3.4
+    },
+    {
+      "tool": "add",
+      "args": {
+        "a": 123456789012345678901234567890,
+        "b": 1
+      },
+      "ok": true,
+      "output": "123456789012345678901234567891",
+      "ms": 2.8
+    },
+    {
+      "tool": "add",
+      "args": {
+        "a": -5,
+        "b": -7
+      },
+      "ok": true,
+      "output": "-12",
+      "ms": 3.0
+    },
+    {
+      "tool": "add",
+      "args": {
+        "a": "3",
+        "b": "4"
+      },
+      "ok": true,
+      "output": "7",
+      "ms": 2.5
+    },
+    {
+      "tool": "add",
+      "args": {
+        "a": "abc",
+        "b": 1
+      },
+      "ok": false,
+      "output": "1 validation error for call[add]\na\n  Input should be a valid integer, unable to parse string as an integer [type=int_parsing, input_value='abc', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/int_parsing",
+      "ms": 8.1
+    },
+    {
+      "tool": "add",
+      "args": {
+        "a": 1.5,
+        "b": 2
+      },
+      "ok": false,
+      "output": "1 validation error for call[add]\na\n  Input should be a valid integer, got a number with a fractional part [type=int_from_float, input_value=1.5, input_type=float]\n    For further information visit https://errors.pydantic.dev/2.12/v/int_from_float",
+      "ms": 6.7
+    },
+    {
+      "tool": "add",
+      "args": {
+        "a": 1
+      },
+      "ok": false,
+      "output": "1 validation error for call[add]\nb\n  Missing required argument [type=missing_argument, input_value={'a': 1}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing_argument",
+      "ms": 6.1
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": "Paris"
+      },
+      "ok": true,
+      "output": "Погода в Париж, Франция: 3.5°C, ветер 6.0 км/ч",
+      "ms": 881.9
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": "PARIS"
+      },
+      "ok": true,
+      "output": "Погода в Париж, Франция: 3.5°C, ветер 6.0 км/ч",
+      "ms": 2938.7
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": "paris"
+      },
+      "ok": true,
+      "output": "Погода в Париж, Франция: 3.5°C, ветер 6.0 км/ч",
+      "ms": 803.9
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": "Екатеринбург"
+      },
+      "ok": true,
+      "output": "Погода в Екатеринбург, Россия: 0.2°C, ветер 6.5 км/ч",
+      "ms": 3922.1
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": "Tokyo"
+      },
+      "ok": true,
+      "output": "Погода в Токио, Япония: 17.7°C, ветер 15.0 км/ч",
+      "ms": 801.7
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": "Qwertyzzzxx"
+      },
+      "ok": false,
+      "output": "Город «Qwertyzzzxx» не найден. Проверьте написание.",
+      "ms": 476.2
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": ""
+      },
+      "ok": false,
+      "output": "Название города не указано.",
+      "ms": 13.4
+    },
+    {
+      "tool": "get_weather",
+      "args": {
+        "city": 12345
+      },
+      "ok": false,
+      "output": "1 validation error for call[get_weather]\ncity\n  Input should be a valid string [type=string_type, input_value=12345, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+      "ms": 52.3
+    },
+    {
+      "tool": "convert_temperature",
+      "args": {
+        "value": 100,
+        "from_unit": "C",
+        "to_unit": "F"
+      },
+      "ok": true,
+      "output": "100°C = 212°F",
+      "ms": 3.2
+    },
+    {
+      "tool": "convert_temperature",
+      "args": {
+        "value": -40,
+        "from_unit": "F",
+        "to_unit": "C"
+      },
+      "ok": true,
+      "output": "-40°F = -40°C",
+      "ms": 3.8
+    },
+    {
+      "tool": "convert_temperature",
+      "args": {
+        "value": 0,
+        "from_unit": "kelvin",
+        "to_unit": "°C"
+      },
+      "ok": true,
+      "output": "0K = -273.15°C",
+      "ms": 2.9
+    },
+    {
+      "tool": "convert_temperature",
+      "args": {
+        "value": -300,
+        "from_unit": "C",
+        "to_unit": "K"
+      },
+      "ok": false,
+      "output": "-300°C ниже абсолютного нуля — такой температуры не бывает.",
+      "ms": 16.9
+    },
+    {
+      "tool": "convert_temperature",
+      "args": {
+        "value": 10,
+        "from_unit": "X",
+        "to_unit": "C"
+      },
+      "ok": false,
+      "output": "Неизвестная шкала «X». Допустимые значения: C, F, K.",
+      "ms": 26.6
+    },
+    {
+      "tool": "convert_temperature",
+      "args": {
+        "value": "жарко",
+        "from_unit": "C",
+        "to_unit": "F"
+      },
+      "ok": false,
+      "output": "1 validation error for call[convert_temperature]\nvalue\n  Input should be a valid number, unable to parse string as a number [type=float_parsing, input_value='жарко', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/float_parsing",
+      "ms": 52.8
+    }
+  ],
+  "transports": {
+    "stdio": {
+      "connect_ms": 1525.9,
+      "call_median_ms": 2.6,
+      "call_min_ms": 2.24,
+      "call_max_ms": 5.45,
+      "calls": 30,
+      "tools": [
+        "add",
+        "get_weather",
+        "convert_temperature"
+      ]
+    },
+    "streamable-http": {
+      "connect_ms": 53.2,
+      "call_median_ms": 16.57,
+      "call_min_ms": 14.89,
+      "call_max_ms": 46.93,
+      "calls": 30,
+      "tools": [
+        "add",
+        "get_weather",
+        "convert_temperature"
+      ]
+    },
+    "http_two_clients": [
+      "2",
+      "4"
+    ]
+  },
+  "prompt_answers": [
+    {
+      "label": "простая тема",
+      "topic": "радуга",
+      "old_prompt": "Can you explain радуга in a beginner friendly manner with simple wordings and no technical jargon. Include Concept & Examples.",
+      "old_answer": "**Радуга (Rainbow)**\n\n**What it means:**  \nРадуга (pronounced *rah-DOO-gah*) is the Russian word for **rainbow**.\n\n---\n\n### Concept\n\nA радуга is a colorful arc painted across the sky. It appears when **rain** and **sunshine** happen at the same time.\n\nThink of it like this:\n\n1. The air is full of tiny raindrops.\n2. The sun shines its light through those drops.\n3. The light breaks into many pretty colors.\n4. Those colors form a big, curved line in the sky.\n\nYou usually see it when you stand with the **sun behind you** and look toward the rain.\n\n---\n\n### What it looks like\n\nIt looks like a colorful smile or a bridge in the sky. The colors usually appear in this order:\n\n**Red → Orange → Yellow → Green → Blue → Purple**\n\n---\n\n### Examples\n\n1. **After a summer storm**  \n   It rains for a while, then the sun comes out. You look outside and see a радуга in the sky.\n\n2. **Garden hose**  \n   On a sunny day, spray water from a hose into the air. Stand with the sun behind you and look at the water mist. You might see a small радуга.\n\n3. **Near a waterfall**  \n   The mist from a waterfall can create a радуга when sunlight hits it.\n\n4. **Double радуга**  \n   Sometimes, after heavy rain, you can see two arcs — one bright and one faint outside of it.\n\n---\n\n### Simple things to remember\n\n- You **cannot touch** a радуга.\n- You **cannot walk to the end** of it.\n- It disappears when the rain stops or the sun goes away.\n\nIn short: **Радуга is the sky’s way of painting with sunlight and raindrops.**",
+      "new_prompt": "Объясни тему «радуга» простым языком для новичка, без технического жаргона.\nСтруктура ответа:\n1. Определение в одном предложении.\n2. Аналогия из повседневной жизни.\n3. Два коротких примера.\nОтвечай на русском языке, не более 150 слов.\nЕсли это бессмысленный набор символов, а не тема, — прямо скажи об этом и попроси уточнить, ничего не выдумывай.",
+      "new_answer": "1. Радуга — это цветная дуга на небе, которая появляется после дождя, когда светит солнце.\n\n2. Аналогия: как белый свет фонарика, проходя через стакан с водой, окрашивает стену в разные цвета.\n\n3. Примеры:\n- После летнего ливня на небе появляется полоска из семи цветов — это радуга.\n- Если на солнце полить цветы из шланга и посмотреть сквозь брызги, можно увидеть маленькую радугу."
+    },
+    {
+      "label": "сложная тема",
+      "topic": "квантовая запутанность",
+      "old_prompt": "Can you explain квантовая запутанность in a beginner friendly manner with simple wordings and no technical jargon. Include Concept & Examples.",
+      "old_answer": "**Quantum entanglement** (квантовая запутанность) is one of the strangest ideas in science, but the basic idea can be explained with everyday things.\n\n---\n\n### The simple concept\n\nImagine the universe has a special kind of “invisible string” that can tie two tiny things together. Once they are tied, they stop acting like two separate strangers and start acting like one team.\n\nIf you check one of them and find out something about it (for example, which way it is facing), you immediately know something about the other one too—no matter how far apart they are. They could be in the same room, or one could be on Earth and the other on the other side of the galaxy.\n\nThis only happens with very tiny things, like atoms or particles of light. Everyday objects like coins or gloves do not do this on their own, but they make good pictures to help us understand.\n\n---\n\n### A simple example: The magic gloves\n\nImagine you have a pair of gloves, but they are invisible until you look at them. Before you open the box, neither glove is a “left” or a “right” glove. They are just gloves.\n\nYou put one glove in a box and send it to Mars. You keep the other glove on Earth.\n\nNow you open your box and see: “It’s a left glove!”\n\nThe instant you see that, the glove on Mars becomes a **right glove**. You did not send a message to Mars. You did not touch it. It simply became the opposite the moment you looked at yours.\n\nThat is the heart of entanglement: two things are linked so closely that knowing one tells you the other, immediately.\n\n---\n\n### Another example: The dancing pair\n\nThink of two tiny dancers who always mirror each other. If one spins to the left, the other spins to the right at the exact same moment. It does not matter if one dancer is in New York and the other is in Tokyo—they still move together.\n\n---\n\n### Why this seems weird\n\nIn normal life, if you flip a coin here, it has nothing to do with a coin your friend flips in another country. But entangled tiny things do not work that way. They stay connected across any distance.\n\nThis is why Albert Einstein once called it “spooky action at a distance.”\n\n---\n\n### What it is NOT\n\nIt is important to know what entanglement cannot do:\n\n* **You cannot use it to send instant messages.** You cannot choose what you will see when you look, so you cannot use it to “text” someone faster than light.\n* **It is not magic.** It is a real, tested rule of nature, even though it sounds strange.\n\n---\n\n### In short\n\n* Two tiny things become linked.\n* Checking one tells you about the other right away.\n* Distance does not break the link.\n* It happens only with very small things, not with everyday objects.\n\nThat is quantum entanglement: nature’s way of saying some things are connected in a way we do not experience in daily life.",
+      "new_prompt": "Объясни тему «квантовая запутанность» простым языком для новичка, без технического жаргона.\nСтруктура ответа:\n1. Определение в одном предложении.\n2. Аналогия из повседневной жизни.\n3. Два коротких примера.\nОтвечай на русском языке, не более 150 слов.\nЕсли это бессмысленный набор символов, а не тема, — прямо скажи об этом и попроси уточнить, ничего не выдумывай.",
+      "new_answer": "1. Квантовая запутанность — это невидимая связь между двумя частицами, из-за чего то, что происходит с одной, мгновенно отражается на другой, даже если они далеко друг от друга.\n\n2. Аналогия: Представьте два волшебных кубика: если вы бросите один и выпадет шестерка, второй тут же покажет шестерку, даже если они далеко друг от друга.\n\n3. Примеры:\n- Два частицы-близнеца: узнав свойство одного, вы сразу знаете то же свойство у второго.\n- Два световых частицы: изменение в одном мгновенно проявляется в другом, хоть они на разных концах города."
+    },
+    {
+      "label": "некорректные данные: набор символов",
+      "topic": "asdfgh 12345 ###",
+      "old_prompt": "Can you explain asdfgh 12345 ### in a beginner friendly manner with simple wordings and no technical jargon. Include Concept & Examples.",
+      "old_answer": "Here is a simple explanation of **asdfgh 12345 ###**.\n\n### What it is\nIt is just a mix of letters, numbers, and symbols typed together. It does not spell a real word, and it does not have a secret meaning. Think of it like scribbling random marks on a piece of paper just to see if your pen works.\n\n### The parts\n- **asdfgh** – These are letters sitting next to each other on the middle row of a keyboard. People often press them by accident or when testing something.\n- **12345** – These are number keys in order.\n- **###** – These are hash (or pound) symbols, often used just to fill space.\n\n### Why do people type things like this?\n1. **To test a box** – If you want to see if a comment box, search bar, or message box works, you might type random characters like this and hit send.\n2. **To make a dummy password** – When practicing or creating a temporary password, someone might use something easy to type like this.\n3. **As a placeholder** – If you do not know what to write yet, you might type random characters to hold the spot.\n4. **Just playing around** – Sometimes people press keys without thinking, especially children exploring a keyboard.\n\n### Examples\n- **Example 1:** You open a website and want to see if the “Contact Us” message box accepts typing. You type `asdfgh 12345 ###` and click send. If your message appears, the box works.\n- **Example 2:** A teacher asks students to type anything into a computer to practice. One student types `asdfgh 12345 ###`.\n- **Example 3:** You need a password for a practice account and choose `asdfgh 12345 ###` because it is simple to remember and type.\n\n### Simple analogy\nIt is like banging on piano keys without trying to play a song. The noise does not mean anything special; it just shows the keys make sound.\n\n### Bottom line\n**asdfgh 12345 ###** is not a difficult code or a special trick. It is just letters, numbers, and symbols put together without forming real words.",
+      "new_prompt": "Объясни тему «asdfgh 12345 ###» простым языком для новичка, без технического жаргона.\nСтруктура ответа:\n1. Определение в одном предложении.\n2. Аналогия из повседневной жизни.\n3. Два коротких примера.\nОтвечай на русском языке, не более 150 слов.\nЕсли это бессмысленный набор символов, а не тема, — прямо скажи об этом и попроси уточнить, ничего не выдумывай.",
+      "new_answer": "Это выглядит как случайный набор символов, а не как реальная тема. Я не могу объяснить «asdfgh 12345 ###», потому что у этого выражения нет определенного значения. Пожалуйста, уточните, о чем вы хотите узнать, и я с радостью объясню простым языком."
+    },
+    {
+      "label": "некорректные данные: пустая строка",
+      "topic": "",
+      "old_prompt": "Can you explain  in a beginner friendly manner with simple wordings and no technical jargon. Include Concept & Examples.",
+      "old_answer": "You didn’t mention what you’d like me to explain, so I’ll show you an example using a common topic: **“What is the Internet?”**\n\nJust reply with the topic you have in mind, and I’ll explain it the same way.\n\n---\n\n### Example: What is the Internet?\n\n**Concept**\n\nImagine that every phone, tablet, and computer in the world is like a house. The internet is like a giant system of invisible roads connecting all those houses together.\n\nThrough these roads, the devices can send messages, pictures, videos, and information to each other almost instantly, no matter how far apart they are.\n\nYou can think of it as one enormous group chat that almost every device in the world belongs to.\n\n**Examples**\n\n1. **Sending a message**  \n   You type “Hello” on your phone and send it to a friend in another country. The internet carries that message through the invisible roads and delivers it to your friend’s phone in seconds.\n\n2. **Watching a video**  \n   You tap on a funny video. That video is stored on a powerful computer far away. The internet brings the video to your screen so you can watch it right away.\n\n3. **Looking up a recipe**  \n   You search for “how to bake cookies.” The internet looks through millions of pages and shows you the best ones on your screen.\n\n---\n\n**What would you like me to explain next?** Tell me the topic, and I’ll break it down with simple words, a clear concept, and easy examples.",
+      "new_prompt": "Пользователь не указал тему для объяснения. Ничего не объясняй: вежливо попроси его назвать тему.",
+      "new_answer": "Здравствуйте! Пожалуйста, укажите тему, которую вы хотите обсудить или получить объяснение, и я с радостью вам помогу."
+    },
+    {
+      "label": "некорректные данные: 500 символов",
+      "topic": "аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа",
+      "old_prompt": "Can you explain аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа in a beginner friendly manner with simple wordings and no technical jargon. Include Concept & Examples.",
+      "old_answer": "Here is a simple explanation.\n\n### What it is\nIt is just **one letter typed over and over again**.\n\nImagine you sit at a keyboard, press the letter “a,” and keep pressing it without pressing anything else. You get a long line of “a”s. That is all this text is. It does not spell a word. It does not tell a story. It is just the same letter repeated many times, like drawing a long line using only one letter.\n\nThe letter looks like the English “a,” but it may come from a different alphabet used in some countries. You do not need to know which one. Just think of it as a single letter repeated.\n\n### Why someone might type it\n- **Boredom:** They mashed the keyboard for fun.\n- **Sound:** It can show a long sound, like a sigh or a shout: “ааааа” = “aaaaah.”\n- **Testing:** They wanted to see if their keyboard or phone works.\n- **Mistake:** They leaned on the key by accident.\n- **Attention:** Some people send long repeats to be noticed in a group chat.\n\n### Examples\n1. **Short:** “аааа” — like saying “ah” four times fast.\n2. **Long:** “аааааааааааа” — like a long “aaaaaaaaaaaa.”\n3. **Same idea in English:** “hhhhhh” or “llllll” — just one letter repeated.\n4. **Everyday life:** It is like clapping your hands over and over with no pause. Clap, clap, clap. Same action, repeated.\n\n### Simple summary\nThere is no secret code or hidden meaning. It is just one letter, copied many times, making a long line.",
+      "new_prompt": "Пользователь передал вместо темы текст длиной 500 символов (допускается не более 200). Ничего не объясняй: вежливо попроси сформулировать тему короче.",
+      "new_answer": "Пожалуйста, сформулируйте тему короче."
+    }
+  ],
+  "resource_answers": {
+    "question": "Какие экскурсии есть в Париже и сколько они стоят?",
+    "old_resource": "Экскурсия 1: Лувр",
+    "old_answer": "В справочном материале нет сведений о списке экскурсий в Париже и их стоимости. Упомянута только «Экскурсия 1: Лувр», без деталей и цен.",
+    "new_resource": "# Экскурсии в Париже\n\n| № | Экскурсия | Длительность | Цена | Примечание |\n|---|-----------|--------------|------|------------|\n| 1 | Лувр | 3 часа | 45 € | Закрыт по вторникам, билет нужно бронировать заранее |\n| 2 | Эйфелева башня | 2 часа | 35 € | Подъём на вершину, лучшее время — на закате |\n| 3 | Монмартр и Сакре-Кёр | 2,5 часа | 25 € | Пешеходная, много лестниц |\n| 4 | Круиз по Сене | 1 час | 18 € | Отправление каждые 30 минут от моста Альма |\n| 5 | Версаль | 5 часов | 70 € | Выезд за город, закрыт по понедельникам |\n\nСовет: в дождливую погоду выбирайте Лувр, в ясную — Монмартр или круиз по Сене.\n",
+    "new_answer": "Вот экскурсии в Париже и их стоимость по справочному материалу:\n\n1. Лувр — 45 €\n2. Эйфелева башня — 35 €\n3. Монмартр и Сакре-Кёр — 25 €\n4. Круиз по Сене — 18 €\n5. Версаль — 70 €"
+  }
+}

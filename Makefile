@@ -1,4 +1,4 @@
-# Установка зависимостей 
+# Установка зависимостей
 setup:
 	uv sync
 
@@ -14,7 +14,10 @@ mcp:
 inspector:
 	npx @modelcontextprotocol/inspector
 
-# Запуск агента, который будет взаимодействовать с MCP сервером
+# Запуск агента, который будет взаимодействовать с MCP сервером (эксперименты задания 8)
 agent:
-	python main.py
-	
+	uv run python main.py
+
+# Эксперименты с сервером: prompt, resources, tools и оба транспорта (задания 1-5)
+experiments:
+	uv run python experiments_server.py
